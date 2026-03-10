@@ -1,0 +1,444 @@
+# HIVE Social — Project Bible v1.0
+
+## A Rede Social das Comunidades Hexagonais
+
+**Tipo:** Product Requirements Document (PRD) + Design Bible  
+**Versão:** 1.0 — Fevereiro 2026  
+**Autor:** Sidarta Inteligência Educacional  
+
+---
+
+## 1. VISÃO E MANIFESTO
+
+### O Problema
+
+As redes sociais atuais são centradas no indivíduo. O feed é sobre **mim** — minha foto, meu like, minha vaidade. Comunidades existem como feature secundária (Facebook Groups, Reddit), nunca como protagonistas. O resultado é uma epidemia de comparação social, conteúdo raso e engagement vazio.
+
+### A Solução: HIVE
+
+**HIVE** é uma rede social onde **comunidades são a unidade fundamental**, não pessoas.
+
+Você não tem um feed de fotos. Você tem um **universo hexagonal infinito** de comunidades vivas, pulsantes, conectadas entre si por afinidade de membros e interesses. Cada hexágono é uma comunidade. Cada comunidade se conecta a 6 outras comunidades vizinhas. Você **navega** entre elas — não scrolla um feed.
+
+### Manifesto
+
+> "Comunidades primeiro. Pessoas são importantes por aquilo que criam juntas, não pela foto que postam. O poder está em quem constrói, não em quem aparece."
+
+### Princípios de Design
+
+1. **Comunidades > Indivíduos** — Sem feed pessoal de fotos, sem stories, sem vaidade
+2. **Navegação > Scroll** — Exploração hexagonal infinita, não timeline vertical
+3. **Poder Velado** — Hierarquia que conquista, não que oprime
+4. **Interações Diversas** — 6+ formatos além de texto e foto
+5. **Conexão Orgânica** — Algoritmo de vizinhança por afinidade real
+
+---
+
+## 2. IDENTIDADE VISUAL
+
+### Nome: HIVE
+
+- Significado: colmeia (comunidades hexagonais interconectadas)
+- Curto, internacional, memorável
+- Alternativas descartadas: Hexa, Kolmeia, Nexus, Orkut 2.0
+
+### Logo
+
+Hexágono duplo (outline + fill interior) com ponto central pulsante. Gradiente primário: vermelho coral (#E63946) para amber (#F4A261).
+
+### Paleta de Cores
+
+| Uso | Cor | Hex |
+|-----|-----|-----|
+| Primary | Coral | #E63946 |
+| Secondary | Amber | #F4A261 |
+| Dark BG | Deep Space | #08081A |
+| Card BG | Midnight | #12121F |
+| Surface | Nebula | #1A1A2E |
+| Text Primary | Off White | #E0E0E0 |
+| Text Secondary | Muted | #888888 |
+| Text Tertiary | Ghost | #555555 |
+
+### Tipografia
+
+| Uso | Font | Peso |
+|-----|------|------|
+| Headlines | Space Grotesk | 700 |
+| Body | DM Sans | 400, 500, 600 |
+| Data/Código | JetBrains Mono | 400, 500 |
+
+### Tema
+
+Dark-first. A interface é escura como o espaço, e as comunidades brilham como estrelas. Cada comunidade tem sua cor própria que ilumina os hexágonos.
+
+---
+
+## 3. NAVEGAÇÃO HEXAGONAL — O CORE DA UX
+
+### 3.1 Conceito
+
+A tela principal é um **grid hexagonal infinito com pan/zoom**. O hexágono central é sua comunidade "foco atual". Os 6 hexágonos ao redor são as comunidades mais relacionadas. O segundo anel tem 12 comunidades do segundo grau. E assim infinitamente.
+
+### 3.2 Algoritmo de Vizinhança (Hex-Affinity Engine)
+
+Cada comunidade tem **6 slots de vizinhança**. O algoritmo determina quais comunidades ocupam esses slots baseado em:
+
+**Fatores primários (70% do peso):**
+- **Membros em Comum** — Quantas pessoas participam de ambas as comunidades
+- **Transição de Membros** — Frequência com que membros de uma entram na outra
+
+**Fatores secundários (20% do peso):**
+- **Afinidade Temática** — NLP/embeddings nos nomes, descrições e conteúdo
+- **Categoria** — Tags de categoria compartilhadas
+
+**Fatores personalizados (10% do peso):**
+- **Suas Comunidades** — Prioriza comunidades das quais você participa
+- **Histórico de Navegação** — Comunidades que você visitou recentemente
+
+### 3.3 Interação com o Grid
+
+| Gesto | Ação |
+|-------|------|
+| Pan (arrastar) | Navegar pelo universo hexagonal |
+| Tap no hexágono | Preview rápido da comunidade |
+| Double-tap | Entrar na comunidade |
+| Pinch zoom | Zoom in/out (ver mais/menos comunidades) |
+| Long press | Menu de ações rápidas |
+
+### 3.4 Indicadores Visuais nos Hexágonos
+
+- **Cor do hexágono**: Cor da comunidade
+- **Opacidade**: Heat score (atividade)
+- **Ponto pulsante**: Comunidade com atividade ao vivo
+- **Borda dourada**: Comunidade da qual você é membro
+- **Ícone de coroa**: Você é Fundador/Guardião
+
+### 3.5 Heat Score
+
+Número de 0 a 100 que indica atividade em tempo real. Calculado por:
+
+- Mensagens nos últimos 30 minutos
+- Membros online agora
+- Fogueiras (áudios ao vivo) ativas
+- Missões em andamento
+- Taxa de crescimento de membros
+
+Comunidades com Heat > 90 pulsam visualmente e ganham destaque no grid.
+
+---
+
+## 4. PERFIL — MINIMALISTA POR DESIGN
+
+### O que o perfil TEM:
+
+- **Foto de perfil** (única foto pessoal na plataforma)
+- **Nome de usuário**
+- **Bio** (max 160 chars)
+- **Lista de comunidades** que participa
+- **Comunidades que fundou**
+- **Badges** de poder ganhas nas comunidades
+- **"Colmeia Stats"**: contribuições totais, comunidades, tempo de participação
+
+### O que o perfil NÃO TEM:
+
+- ❌ Feed de fotos
+- ❌ Stories
+- ❌ Contagem de seguidores
+- ❌ Likes públicos
+- ❌ Reels/vídeos pessoais
+- ❌ Timeline de atividades
+
+### Por quê?
+
+O perfil é seu **cartão de identidade**, não sua vitrine. As pessoas são conhecidas pelas **comunidades que constroem e participam**, não pelas fotos que postam.
+
+---
+
+## 5. SISTEMA DE PODER — A HIERARQUIA VELADA
+
+### Filosofia
+
+O poder no HIVE é **conquistado organicamente**, nunca imposto. O Fundador tem poder absoluto, mas a interface nunca o destaca agressivamente. As pessoas percebem o poder pela influência, não pelo badge.
+
+### 5 Níveis de Poder
+
+#### 👑 Fundador (Nível 5)
+- **Quem**: Criador da comunidade
+- **Pode**: Tudo — deletar comunidade, nomear Guardiões, expulsar membros, mudar regras, editar aparência
+- **Como aparece**: Nome com cor dourada sutil. Badge discreto no perfil. Sem destaque no chat.
+
+#### ⚔️ Guardião (Nível 4)
+- **Quem**: Nomeado pelo Fundador
+- **Pode**: Moderar conteúdo, aprovar/rejeitar membros (se comunidade for fechada), organizar eventos, pinnar mensagens
+- **Como aparece**: Badge prata no perfil dentro da comunidade
+
+#### 🔥 Catalisador (Nível 3)
+- **Quem**: Membro ativo que atinge thresholds de contribuição (50+ mensagens, 30+ dias ativos, votado positivamente por membros)
+- **Pode**: Criar enquetes, iniciar Fogueiras, propor Missões, convidar membros
+- **Como aparece**: Badge bronze
+
+#### ⭐ Membro (Nível 2)
+- **Quem**: Pessoa que entrou na comunidade e completou o "ritual de entrada"
+- **Pode**: Enviar mensagens, votar, reagir, participar de todas as interações
+- **Como aparece**: Sem badge, nome normal
+
+#### 🌱 Explorador (Nível 1)
+- **Quem**: Visitante que ainda não se tornou membro
+- **Pode**: Ver conteúdo público, ler mensagens, observar
+- **Não pode**: Interagir ativamente
+- **Como aparece**: Invisível para os outros membros
+
+### Delegação de Poder
+
+O Fundador pode criar **permissões customizadas** para cada Guardião. Exemplo: "Maria pode moderar, mas não pode expulsar. João pode pinnar e criar eventos."
+
+Isso permite micro-governança sofisticada sem complexidade visível para membros comuns.
+
+---
+
+## 6. INTERAÇÕES — MUITO ALÉM DO CHAT
+
+### 6 Tipos de Interação Core
+
+#### 💬 COLMEIA (Chat em Threads)
+- Chat principal da comunidade, mas organizado em **threads temáticos**
+- Cada thread é uma "célula" da colmeia
+- Threads podem ser pinadas, arquivadas, transformadas em Missão
+- Suporte a texto, links, emojis, menções, e **audio snippets** (mensagem de voz de 30s)
+- **Diferencial**: Threads morrem após 7 dias de inatividade, mantendo o conteúdo fresco
+
+#### 🔥 FOGUEIRA (Áudio ao Vivo Efêmero)
+- **Sala de áudio ao vivo** que qualquer Catalisador+ pode abrir
+- Max 12 speakers + ouvintes ilimitados
+- Não é gravada. Quando acaba, desaparece. **Sem replay.**
+- Timer visual: fogueiras duram max 2 horas
+- "Brasas": ao final, participantes podem deixar uma frase que fica como registro
+
+#### 🎯 MISSÃO (Desafio Colaborativo)
+- Um objetivo que a comunidade busca **juntar**
+- Exemplo: "Ler 100 livros este mês" / "Fotografar 50 pores-do-sol" / "Contribuir 500 receitas"
+- Barra de progresso coletiva
+- Cada contribuição é verificada pela comunidade (peer review)
+- Ao completar, toda a comunidade ganha um **badge especial**
+
+#### 📊 Quiz (Votação Ponderada)
+- Sistema de votação onde **o peso do voto escala com o nível de poder**
+- Fundador = 5 votos, Guardião = 4, Catalisador = 3, Membro = 2
+- **Votação anônima** para evitar pressão social
+- Resultado em tempo real com visualização hexagonal (cada voto é um mini hexágono)
+- Tipos: múltipla escolha, sim/não, ranking, escala de concordância
+
+#### 🎭 ARENA (Debate Moderado)
+- Formato **structured debate**: proposição + 2 lados + moderador
+- Timer por turno (2 min cada)
+- Platéia vota em tempo real
+- Moderador (Guardião+) pode dar tempo extra ou encerrar
+- Ao final, resumo gerado por AI dos melhores argumentos
+- **Formato TV debate, mas para qualquer assunto**
+
+#### 🧩 MOSAICO (Criação Coletiva)
+- Um **canvas colaborativo** onde membros criam juntos
+- Pode ser: um documento, uma playlist, um board de imagens, um mapa, uma história
+- Cada membro adiciona uma "peça" (text, link, image)
+- Fundador define as regras do Mosaico (tema, formato, limites)
+- Resultado final é a soma de todas as contribuições
+
+---
+
+### 7 Interações Inovadoras Adicionais (Sugestões)
+
+#### 🎪 FESTIVAL (Evento Multi-Formato)
+- Combinação de Fogueira + Arena + Mosaico em um evento agendado
+- Timer global, programação de atividades
+- Comunidades convidadas podem participar (cross-community)
+
+#### 🔮 ANONIMATO (Perguntas Anônimas)
+- Membro faz pergunta anônima para a comunidade
+- Respostas são classificadas por upvotes
+- A melhor resposta ganha destaque
+- Ideal para comunidades de saúde, carreira, finanças
+
+#### 🧬 DNA (Match de Membros)
+- Algoritmo que identifica membros com interesses complementares
+- Sugere "duplas" para Missões ou projetos
+- Baseado em participação em comunidades similares
+- Não é dating — é match de **cérebros**
+
+#### 🗺️ MAPA VIVO (Visualização Geográfica)
+- Overlay no grid hexagonal que mostra de onde os membros são
+- Permite criar sub-grupos regionais
+- "Encontre membros perto de você"
+- Opt-in (privacidade primeiro)
+
+#### ⏰ CÁPSULA DO TEMPO
+- A comunidade cria uma mensagem coletiva para o futuro
+- Selada por voto do Consenso
+- Abre automaticamente em data pré-definida (1 mês, 6 meses, 1 ano)
+- Quando abre, gera uma Fogueira automática para celebrar
+
+#### 🏆 TORNEIO
+- Competição entre membros ou equipes da comunidade
+- Brackets, placar, eliminatórias
+- Pode ser de quiz, criação, debate, ou qualquer formato
+- Vencedor ganha badge exclusivo e reconhecimento permanente
+
+---
+
+## 7. RITUAL DE ENTRADA
+
+Cada comunidade pode definir um "ritual" para novos membros:
+
+- **Aberta**: Sem ritual, entre e participe
+- **Pergunta**: Responda 1-3 perguntas definidas pelo Fundador
+- **Convite**: Só entra com convite de membro existente
+- **Desafio**: Complete uma mini-Missão para ser aceito
+- **Aprovação**: Guardião+ precisa aprovar manualmente
+
+Isso cria senso de **exclusividade e pertencimento** sem ser elitista.
+
+---
+
+## 8. MONETIZAÇÃO
+
+### Para a Plataforma
+- **HIVE Pro**: Assinatura para Fundadores com ferramentas avançadas (analytics, personalização visual avançada, Transmissões ilimitadas)
+- **Boost de Comunidade**: Pagar para aparecer no grid de mais pessoas (transparente, marcado como "promoted")
+- **Marketplace de Templates**: Temas visuais para comunidades
+
+### Para Fundadores
+- **Comunidades Premium**: Acesso pago (mensalidade) — HIVE fica com 15%
+- **Badges Exclusivos**: NFTs ou badges pagos dentro da comunidade
+- **Doações**: Membros podem apoiar a comunidade/fundador diretamente
+
+---
+
+## 9. ARQUITETURA TÉCNICA (ALTO NÍVEL)
+
+### Stack Recomendado
+
+| Camada | Tecnologia | Justificativa |
+|--------|-----------|---------------|
+| Frontend Mobile | React Native + Expo | Cross-platform, performance, hexagonal canvas |
+| Frontend Web | Next.js 14 + React | SSR, SEO para comunidades públicas |
+| Hex Grid Renderer | Canvas API / PixiJS | Performance para grid infinito com milhares de hexágonos |
+| Backend API | Node.js + Fastify | Latência mínima |
+| Real-time | WebSockets (Socket.io) | Chat, Fogueiras, votos ao vivo |
+| Database | PostgreSQL + PostGIS | Dados relacionais + geolocalização |
+| Cache | Redis | Sessions, heat scores, presença online |
+| Search | ElasticSearch / Meilisearch | Busca de comunidades |
+| Audio (Fogueira) | LiveKit / Agora | Áudio real-time de baixa latência |
+| Storage | S3 / R2 | Imagens de perfil, conteúdo de Mosaico |
+| AI Engine | Claude API | Resumos de Arena, moderação, recomendações |
+| Infra | AWS / Vercel | Escalabilidade global |
+
+### Dados Principais
+
+```
+Comunidade {
+  id, nome, descricao, cor, icone, categoria
+  fundador_id, data_criacao
+  ritual_tipo, ritual_config
+  heat_score, total_membros
+  hex_vizinhos[6] // calculado pelo algoritmo
+}
+
+Membro {
+  id, username, foto_url, bio
+  comunidades[], poder_por_comunidade{}
+  badges[], stats{}
+}
+
+Interacao {
+  tipo: 'colmeia'|'fogueira'|'missao'|'consenso'|'arena'|'mosaico'
+  comunidade_id, criador_id
+  conteudo, metadata, status
+  participantes[], data_inicio, data_fim
+}
+```
+
+### Performance do Grid Infinito
+
+- **Virtualização**: Renderizar apenas hexágonos visíveis no viewport
+- **Level of Detail (LOD)**: Zoom out mostra apenas cores/ícones; zoom in mostra detalhes
+- **Prefetch**: Carregar 2 anéis à frente da navegação
+- **WebGL**: Para o grid principal, usar GPU rendering (PixiJS/Three.js)
+
+---
+
+## 10. ROADMAP
+
+### Fase 1 — MVP (3 meses)
+- Grid hexagonal navegável (1 anel)
+- Criação de comunidades
+- Colmeia (chat em threads)
+- Perfil minimalista
+- Sistema de poder (Fundador + Membro)
+
+### Fase 2 — Core Features (3 meses)
+- Algoritmo de vizinhança completo
+- Grid infinito com zoom
+- Fogueira (áudio ao vivo)
+- Consenso (votações)
+- Ritual de entrada
+- 5 níveis de poder
+
+### Fase 3 — Diferenciação (3 meses)
+- Missão (desafios colaborativos)
+- Arena (debates)
+- Mosaico (criação coletiva)
+- Heat Score em tempo real
+- Cross-community events
+
+### Fase 4 — Scale & Money (3 meses)
+- HIVE Pro
+- Comunidades Premium
+- Festival (eventos multi-formato)
+- API pública
+- Analytics para Fundadores
+
+---
+
+## 11. MÉTRICAS DE SUCESSO
+
+| Métrica | Meta MVP | Meta 1 ano |
+|---------|----------|------------|
+| Comunidades criadas | 500 | 50.000 |
+| Membros ativos/mês | 5.000 | 500.000 |
+| Tempo médio na sessão | 8 min | 18 min |
+| Comunidades com Heat > 70 | 30% | 50% |
+| Retenção D7 | 25% | 45% |
+| Fogueiras/semana | 100 | 10.000 |
+| NPS | 40 | 60+ |
+
+---
+
+## 12. COMPETIDORES E DIFERENCIAÇÃO
+
+| Feature | HIVE | Reddit | Discord | Facebook Groups |
+|---------|------|--------|---------|-----------------|
+| Comunidade como unidade central | ✅ | ✅ | ✅ | ❌ |
+| Navegação visual hexagonal | ✅ | ❌ | ❌ | ❌ |
+| Sem feed de fotos individual | ✅ | ✅ | ❌ | ❌ |
+| Áudio ao vivo efêmero | ✅ | ❌ | ✅ | ❌ |
+| Sistema de poder orgânico | ✅ | ❌ | Parcial | ❌ |
+| Desafios colaborativos | ✅ | ❌ | ❌ | ❌ |
+| Debates estruturados | ✅ | ❌ | ❌ | ❌ |
+| Criação coletiva | ✅ | ❌ | ❌ | ❌ |
+| Votação ponderada | ✅ | ❌ | ❌ | ❌ |
+| Algoritmo de vizinhança | ✅ | Parcial | ❌ | ❌ |
+
+---
+
+## 13. RISCOS E MITIGAÇÕES
+
+| Risco | Impacto | Mitigação |
+|-------|---------|-----------|
+| Grid hexagonal confuso para users | Alto | Onboarding guiado, tutorial interativo, fallback para lista |
+| Cold start (comunidades vazias) | Alto | Seed com 100 comunidades curadas, parcerias com creators |
+| Moderação em escala | Médio | AI moderação + sistema de poder descentralizado |
+| Performance do grid infinito | Médio | Virtualização agressiva, WebGL, CDN edge |
+| Competição com Discord/Reddit | Alto | UX única, interações inovadoras, foco Brasil primeiro |
+
+---
+
+*HIVE Social — Onde cada hexágono é um mundo.*

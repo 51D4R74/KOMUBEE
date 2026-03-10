@@ -1,0 +1,87 @@
+## 6. INTERAÇÕES — MUITO ALÉM DO CHAT
+
+### 6 Tipos de Interação Core
+
+#### 💬 COLMEIA (Chat em Threads)
+- Chat principal da comunidade, mas organizado em **threads temáticos**
+- Cada thread é uma "célula" da colmeia
+- Threads podem ser pinadas, arquivadas, transformadas em Missão
+- Suporte a texto, links, emojis, menções, e **audio snippets** (mensagem de voz de 30s)
+- **Diferencial**: Threads morrem após 7 dias de inatividade, mantendo o conteúdo fresco
+
+#### 🔥 FOGUEIRA (Áudio ao Vivo Efêmero)
+- **Sala de áudio ao vivo** que qualquer Catalisador+ pode abrir
+- Max 12 speakers + ouvintes ilimitados
+- Não é gravada. Quando acaba, desaparece. **Sem replay.**
+- Timer visual: fogueiras duram max 2 horas
+- "Brasas": ao final, participantes podem deixar uma frase que fica como registro
+
+#### 🎯 MISSÃO (Desafio Colaborativo)
+- Um objetivo que a comunidade busca **juntar**
+- Exemplo: "Ler 100 livros este mês" / "Fotografar 50 pores-do-sol" / "Contribuir 500 receitas"
+- Barra de progresso coletiva
+- Cada contribuição é verificada pela comunidade (peer review)
+- Ao completar, toda a comunidade ganha um **badge especial**
+
+#### 📊 Quiz (Votação Ponderada)
+- Sistema de votação onde **o peso do voto escala com o nível de poder**
+- Fundador = 5 votos, Guardião = 4, Catalisador = 3, Membro = 2
+- **Votação anônima** para evitar pressão social
+- Resultado em tempo real com visualização hexagonal (cada voto é um mini hexágono)
+- Tipos: múltipla escolha, sim/não, ranking, escala de concordância
+
+#### 🎭 ARENA (Debate Moderado)
+- Formato **structured debate**: proposição + 2 lados + moderador
+- Timer por turno (2 min cada)
+- Platéia vota em tempo real
+- Moderador (Guardião+) pode dar tempo extra ou encerrar
+- Ao final, resumo gerado por AI dos melhores argumentos
+- **Formato TV debate, mas para qualquer assunto**
+
+#### 🧩 MOSAICO (Criação Coletiva)
+- Um **canvas colaborativo** onde membros criam juntos
+- Pode ser: um documento, uma playlist, um board de imagens, um mapa, uma história
+- Cada membro adiciona uma "peça" (text, link, image)
+- Fundador define as regras do Mosaico (tema, formato, limites)
+- Resultado final é a soma de todas as contribuições
+
+---
+
+### 7 Interações Inovadoras Adicionais (Sugestões)
+
+#### 🎪 FESTIVAL (Evento Multi-Formato)
+- Combinação de Fogueira + Arena + Mosaico em um evento agendado
+- Timer global, programação de atividades
+- Comunidades convidadas podem participar (cross-community)
+
+#### 🔮 ANONIMATO (Perguntas Anônimas)
+- Membro faz pergunta anônima para a comunidade
+- Respostas são classificadas por upvotes
+- A melhor resposta ganha destaque
+- Ideal para comunidades de saúde, carreira, finanças
+
+#### 🧬 DNA (Match de Membros)
+- Algoritmo que identifica membros com interesses complementares
+- Sugere "duplas" para Missões ou projetos
+- Baseado em participação em comunidades similares
+- Não é dating — é match de **cérebros**
+
+#### 🗺️ MAPA VIVO (Visualização Geográfica)
+- Overlay no grid hexagonal que mostra de onde os membros são
+- Permite criar sub-grupos regionais
+- "Encontre membros perto de você"
+- Opt-in (privacidade primeiro)
+
+#### ⏰ CÁPSULA DO TEMPO
+- A comunidade cria uma mensagem coletiva para o futuro
+- Selada por voto do Consenso
+- Abre automaticamente em data pré-definida (1 mês, 6 meses, 1 ano)
+- Quando abre, gera uma Fogueira automática para celebrar
+
+#### 🏆 TORNEIO
+- Competição entre membros ou equipes da comunidade
+- Brackets, placar, eliminatórias
+- Pode ser de quiz, criação, debate, ou qualquer formato
+- Vencedor ganha badge exclusivo e reconhecimento permanente
+
+---
