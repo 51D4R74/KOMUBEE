@@ -1,0 +1,49 @@
+Exemplos de comunidades: "Football Fans", "Beauty Hub", "Coffee Addicts", "Animal Lovers", "Gaming", "Surf and Skate", "Music", "Tech Bros", etc. Garanta que as conexões (relatedIds) façam sentido e formem uma rede interligada (bidirecional).
+
+PASSO 3: O COMPONENTE HEXÁGONO (A UI)
+Crie um arquivo src/components/Hexagon.tsx.
+Este componente recebe: community (dados), isCenter (boolean), position (x, y) e onClick.
+Regras Visuais Estritas (Estética Premium Gold/Dark):
+
+O hexágono DEVE ter o formato perfeito. Use a classe Tailwind ou style inline com: clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%).
+
+As bordas devem simular um metal dourado. Como o clip-path corta bordas normais, crie um div maior com um background dourado (gradiente de tons #FFD700, #DAA520, #B8860B), e dentro dele um div levemente menor (também com clip-path) para segurar a imagem, criando a ilusão de uma borda dourada grossa.
+
+Se isCenter for true, adicione um box-shadow ou um efeito de glow intenso (dourado/amarelo brilhante) ao redor.
+
+O conteúdo interno deve ser a imageUrl como background (cover), com um overlay de gradiente escuro (bottom-to-top) para garantir a leitura do texto. O title deve ficar em branco, negrito, centralizado na base do hexágono.
+
+PASSO 4: A LÓGICA DO GRID E ANIMAÇÕES (Framer Motion)
+Crie o arquivo src/components/KomubeeBoard.tsx.
+Este é o cérebro da interface.
+
+O estado deve guardar o centerCommunityId. Comece com um ID padrão (ex: o ID de "Animal Lovers").
+
+Crie uma função para buscar a comunidade central e seus vizinhos mapeados em relatedIds.
+
+Lógica de Posicionamento Matemático: NÃO use CSS Grid convencional. O grid deve ser feito com posicionamento absoluto em um container de tamanho fixo, centralizado na tela.
+
+O Hexágono Central fica na posição { x: 0, y: 0 }.
+
+Os 6 vizinhos devem ser posicionados radialmente ao redor do centro.
+
+Use matemática básica para os ângulos: 30°, 90°, 150°, 210°, 270°, 330° multiplicados por um raio fixo (ex: 200px, dependendo do tamanho do hexágono) para definir o left e top de cada vizinho relativo ao centro.
+
+Use <AnimatePresence> e <motion.div> do Framer Motion.
+
+Quando o centerCommunityId mudar, os hexágonos devem deslizar suavemente (layout prop do framer-motion) para suas novas posições.
+
+Vizinhos novos devem aparecer com opacity: 0, scale: 0.8 e animar para opacity: 1, scale: 1.
+
+Conecte o onClick dos hexágonos periféricos para atualizar o centerCommunityId.
+
+PASSO 5: A PÁGINA PRINCIPAL
+Modifique src/app/page.tsx.
+
+O fundo geral (body/main) deve ser escuro. Use um bg-zinc-950 com um leve gradiente radial escuro e dourado no centro para dar profundidade de "espaço sideral" ou ambiente imersivo.
+
+Renderize o componente <KomubeeBoard /> centralizado na tela (h-screen, w-full, flex center).
+
+Adicione um logo simples de texto "KOMUBEE" no topo, em dourado brilhante, e as opções de menu flutuantes de forma sutil nas laterais, para imitar o layout dos vídeos de referência.
+
+Execute a construção, corrija possíveis erros de importação e garanta que o alinhamento dos hexágonos não deixe buracos ou sobreposições. Eles devem se encaixar como uma colmeia perfeita.

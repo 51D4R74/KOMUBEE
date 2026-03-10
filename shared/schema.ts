@@ -32,6 +32,8 @@ export const communities = pgTable("communities", {
   isPublic: boolean("is_public").notNull().default(true),
   gridX: real("grid_x").notNull().default(0),
   gridY: real("grid_y").notNull().default(0),
+  coverImageUrl: text("cover_image_url"),
+  relatedIds: text("related_ids").array().default(sql`'{}'::text[]`),
 });
 
 export const insertCommunitySchema = createInsertSchema(communities).pick({

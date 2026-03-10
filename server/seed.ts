@@ -51,6 +51,7 @@ export async function seedDatabase() {
       category: "technology",
       entryType: "open",
       heatScore: 87,
+      coverImageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
     },
     {
       name: "Pixel Forge",
@@ -59,6 +60,7 @@ export async function seedDatabase() {
       category: "art",
       entryType: "open",
       heatScore: 72,
+      coverImageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80",
     },
     {
       name: "Sound Lab",
@@ -67,6 +69,7 @@ export async function seedDatabase() {
       category: "music",
       entryType: "open",
       heatScore: 65,
+      coverImageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&q=80",
     },
     {
       name: "Deep Reads",
@@ -75,6 +78,7 @@ export async function seedDatabase() {
       category: "books",
       entryType: "question",
       heatScore: 45,
+      coverImageUrl: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
     },
     {
       name: "Street Lens",
@@ -83,6 +87,7 @@ export async function seedDatabase() {
       category: "photography",
       entryType: "open",
       heatScore: 58,
+      coverImageUrl: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80",
     },
     {
       name: "Indie Games",
@@ -91,6 +96,7 @@ export async function seedDatabase() {
       category: "gaming",
       entryType: "open",
       heatScore: 91,
+      coverImageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80",
     },
     {
       name: "Climate Action",
@@ -99,6 +105,7 @@ export async function seedDatabase() {
       category: "science",
       entryType: "open",
       heatScore: 38,
+      coverImageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",
     },
     {
       name: "Startup Kitchen",
@@ -107,6 +114,7 @@ export async function seedDatabase() {
       category: "finance",
       entryType: "approval",
       heatScore: 76,
+      coverImageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80",
     },
     {
       name: "Trail Runners",
@@ -115,6 +123,7 @@ export async function seedDatabase() {
       category: "sports",
       entryType: "open",
       heatScore: 52,
+      coverImageUrl: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80",
     },
   ];
 
@@ -134,7 +143,10 @@ export async function seedDatabase() {
       founderId: founder.id,
     });
 
-    await db.update(communities).set({ heatScore: c.heatScore }).where(
+    await db.update(communities).set({
+      heatScore: c.heatScore,
+      coverImageUrl: c.coverImageUrl,
+    }).where(
       (await import("drizzle-orm")).eq(communities.id, community.id)
     );
 
@@ -181,11 +193,32 @@ export async function seedDatabase() {
     }
   }
 
+  const { eq } = await import("drizzle-orm");
+
+  const relatedGraph: number[][] = [
+    [1, 2, 5, 7],       // 0: Rust Builders → Pixel Forge, Sound Lab, Indie Games, Startup Kitchen
+    [0, 2, 5, 3],       // 1: Pixel Forge → Rust Builders, Sound Lab, Indie Games, Deep Reads
+    [1, 3, 4, 7],       // 2: Sound Lab → Pixel Forge, Deep Reads, Street Lens, Startup Kitchen
+    [2, 4, 6, 1],       // 3: Deep Reads → Sound Lab, Street Lens, Climate Action, Pixel Forge
+    [3, 5, 6, 8],       // 4: Street Lens → Deep Reads, Indie Games, Climate Action, Trail Runners
+    [0, 1, 4, 7, 8],    // 5: Indie Games → Rust Builders, Pixel Forge, Street Lens, Startup Kitchen, Trail Runners
+    [3, 4, 8, 7],       // 6: Climate Action → Deep Reads, Street Lens, Trail Runners, Startup Kitchen
+    [0, 2, 5, 6, 8],    // 7: Startup Kitchen → Rust Builders, Sound Lab, Indie Games, Climate Action, Trail Runners
+    [4, 5, 6, 7],       // 8: Trail Runners → Street Lens, Indie Games, Climate Action, Startup Kitchen
+  ];
+
+  for (let i = 0; i < createdCommunities.length; i++) {
+    const relIds = relatedGraph[i].map((idx) => createdCommunities[idx].id);
+    await db.update(communities).set({ relatedIds: relIds }).where(
+      eq(communities.id, createdCommunities[i].id)
+    );
+  }
+
   const updatedCommunities = await storage.getAllCommunities();
   for (const c of updatedCommunities) {
     const members = await storage.getCommunityMembers(c.id);
     await db.update(communities).set({ memberCount: members.length }).where(
-      (await import("drizzle-orm")).eq(communities.id, c.id)
+      eq(communities.id, c.id)
     );
   }
 

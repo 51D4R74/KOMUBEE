@@ -1,0 +1,45 @@
+Atue como um Engenheiro Front-end Sênior especialista em React, Tailwind CSS, Framer Motion e UI/UX interativa. 
+
+O OBJETIVO:
+Criar a Homepage de uma nova rede social chamada "KOMUBEE". O conceito do app é focado na criação e descoberta de comunidades (uma versão moderna e atualizada do Orkut). 
+
+A METÁFORA VISUAL:
+A interface principal é uma "Colmeia" (Honeycomb). Cada comunidade é representada por um hexágono (favo). Um hexágono central se conecta a até 6 outros hexágonos (um em cada vértice/aresta). As vizinhanças são dinâmicas: comunidades semelhantes ficam fisicamente próximas com base em um algoritmo de similaridade.
+
+STACK TECNOLÓGICO:
+- React (Next.js App Router preferencialmente)
+- Tailwind CSS (para estilização e layout)
+- Framer Motion (para animações de transição, hover e layout compartilhado)
+- Lucide React (para ícones, se necessário)
+
+DIRETRIZES VISUAIS E DE ESTILO (A "VIBE"):
+- Tema Escuro (Dark Mode) premium. O fundo deve ser um preto profundo ou um cinza muito escuro (ex: bg-zinc-950), com um leve efeito de brilho ou névoa radial dourada no centro, dando uma sensação de profundidade.
+- Os Hexágonos (Favos): Devem ser criados usando CSS `clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)`.
+- Bordas e Cores: A estética é "Gold/Metallic". As bordas dos hexágonos devem parecer metálicas douradas (tons de #FFD700, #DAA520, e #B8860B). Hexágonos ativos devem ter um efeito de "glow" (sombra projetada neon-dourada).
+- Conteúdo do Hexágono: 
+  1. Imagem de fundo da comunidade com uma camada de overlay escura (gradiente linear de baixo para cima) para dar legibilidade ao texto.
+  2. Título da comunidade em branco, fonte sans-serif moderna, em negrito, centralizado na parte inferior do hexágono.
+- Conexões: Em algumas visualizações, mostre linhas finas e brilhantes douradas conectando o centro de um hexágono aos seus vizinhos diretos.
+
+COMPORTAMENTO E INTERATIVIDADE (UX):
+1. Navegação Infinita/Panning: O grid hexagonal deve ser arrastável (drag-to-pan) usando Framer Motion, permitindo que o usuário explore a "colmeia".
+2. Hover Effect: Ao passar o mouse sobre um hexágono, ele deve sofrer um leve "scale up" (aumentar um pouco de tamanho), o brilho dourado (glow) deve se intensificar, e os hexágonos vizinhos que não têm relação podem ficar levemente mais opacos.
+3. Clique e Re-renderização Dinâmica: Ao clicar em um hexágono periférico, a câmera/tela deve fazer uma transição suave (animada) movendo este hexágono clicado para o CENTRO da tela. Os 6 vizinhos ao redor dele devem aparecer dinamicamente (fade in e scale up), simulando o algoritmo de similaridade trazendo as comunidades relacionadas.
+
+ESTRUTURA DO GRID:
+- Crie um componente `HexGrid` que gerencia o layout. O layout hexagonal matemático implica que linhas ímpares e pares têm um "offset" (deslocamento) horizontal para encaixarem perfeitamente.
+- Use posicionamento absoluto calculado com base em coordenadas (Q, R) de coordenadas axiais de hexágonos ou use um truque flex/grid em CSS com margens negativas se preferir manter simples, mas o posicionamento por coordenadas com Framer Motion costuma dar transições melhores.
+
+ESTRUTURA DE DADOS MOCKADA (JSON):
+Crie um estado mockado com pelo menos 15 comunidades. Cada objeto deve ter:
+- id (string)
+- title (string - ex: "Football Fans", "Coffee Addicts", "Animal Lovers", "Surf and Skate", "Gaming", "Beauty Hub")
+- image (string - use URLs do Unsplash relacionadas ao título)
+- relatedIds (array de até 6 strings referenciando os IDs dos vizinhos)
+
+O QUE VOCÊ DEVE ENTregar:
+1. O código do componente principal `KomubeeHome`.
+2. O código do componente `HexagonNode`.
+3. A lógica mockada de navegação (ao clicar em um node, atualizar o "centralNodeId" e re-calcular quem são os 6 vizinhos renderizados ao redor dele).
+
+Garanta que o código seja responsivo, bonito, limpo e que a estética premium preto/dourado dos vídeos seja traduzida no CSS.

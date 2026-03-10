@@ -4,15 +4,26 @@ A community-first social network with hexagonal navigation. Communities are the 
 
 ## Architecture
 
-- **Frontend**: React + Vite + TailwindCSS + Shadcn/UI
+- **Frontend**: React + Vite + TailwindCSS + Shadcn/UI + Framer Motion
 - **Backend**: Express.js + PostgreSQL + Drizzle ORM
 - **Auth**: Passport.js with local strategy (session-based)
-- **Styling**: Dark-first theme with Space Grotesk (headlines), DM Sans (body), JetBrains Mono (data)
+- **Styling**: Premium dark (#09090b) with gold metallic accents (#FFD700, #DAA520, #B8860B)
+- **Fonts**: Space Grotesk (headlines), DM Sans (body), JetBrains Mono (data)
+
+## Homepage — Honeycomb Graph Navigation
+
+The homepage uses a graph-based honeycomb layout:
+- **KomubeeBoard** (`komubee-board.tsx`): Renders 1 center hex + up to 6 neighbor hexes radially
+- **HexagonNode** (`hexagon-node.tsx`): CSS `clip-path` hexagons with gold gradient borders, cover images, dark overlays
+- Communities are linked via `relatedIds` (bidirectional graph). Clicking a neighbor re-centers the board with Framer Motion animations
+- Center hex has intense golden glow; neighbors fade in/out with spring animations
+- Golden SVG connection lines between center and neighbors
+- Old SVG-based `hex-grid.tsx` kept as fallback but not used
 
 ## Key Features
 
-- Interactive hexagonal grid for community exploration (pan/zoom/click)
-- Community creation with custom colors, categories, and entry types
+- Interactive honeycomb graph navigation with Framer Motion transitions
+- Community creation with custom colors, categories, cover images, and entry types
 - 6 interaction types: Colmeia (threaded chat), Fogueira (live audio rooms), Missão (collaborative missions), Quiz (weighted voting), Arena (moderated debate), Mosaico (collaborative board)
 - 5-level power hierarchy (Explorer, Member, Catalyst, Guardian, Founder)
 - Minimalist user profiles focused on community participation
@@ -21,7 +32,7 @@ A community-first social network with hexagonal navigation. Communities are the 
 ## Data Model
 
 - **users**: id, username, password, bio, avatarColor
-- **communities**: id, name, description, color, category, founderId, entryType, heatScore, memberCount, isPublic, gridX, gridY
+- **communities**: id, name, description, color, category, founderId, entryType, heatScore, memberCount, isPublic, gridX, gridY, coverImageUrl, relatedIds[]
 - **community_members**: id, communityId, userId, powerLevel, joinedAt
 - **threads**: id, communityId, authorId, title, content, isPinned, isArchived, messageCount, lastActivityAt
 - **thread_messages**: id, threadId, authorId, content, createdAt
@@ -40,12 +51,12 @@ A community-first social network with hexagonal navigation. Communities are the 
 
 ## Color Palette
 
-- Primary: Coral (#E63946)
-- Accent: Amber (#F4A261)
-- Dark BG: Deep Space (#08081A via CSS vars)
-- Card BG: Midnight (#12121F via CSS vars)
+- Gold: #FFD700 (primary gold), #DAA520 (dark gold), #B8860B (darker gold)
+- Background: #09090b (deep black)
+- Community colors: individual per community
+- CSS utilities: `.gold-gradient`, `.gold-text`, `.hex-clip`, `.animate-gold-pulse`
 
 ## Seed Data
 
 Demo users: aurora, nexus, cipher, ember, atlas (password: demo1234)
-9 seed communities with threads and messages pre-populated.
+9 seed communities with cover images, related IDs, threads, and messages pre-populated.

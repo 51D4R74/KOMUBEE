@@ -253,4 +253,28 @@
   .animate-glow {
     animation: glow 3s ease-in-out infinite;
   }
+
+  @keyframes gold-pulse {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4)); }
+    50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.7)); }
+  }
+
+  .animate-gold-pulse {
+    animation: gold-pulse 3s ease-in-out infinite;
+  }
+
+  .hex-clip {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #FFD700 0%, #DAA520 40%, #B8860B 70%, #DAA520 100%);
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, #FFD700, #DAA520, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
