@@ -169,7 +169,7 @@ export class DatabaseStorage implements IStorage {
     return community;
   }
 
-  async joinCommunity(communityId: string, userId: string, powerLevel = POWER_LEVELS.MEMBER): Promise<CommunityMember> {
+  async joinCommunity(communityId: string, userId: string, powerLevel: number = POWER_LEVELS.MEMBER): Promise<CommunityMember> {
     const existing = await this.getMembership(communityId, userId);
     if (existing) return existing;
 

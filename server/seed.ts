@@ -1,7 +1,7 @@
 import { storage } from "./storage";
 import { db } from "./db";
 import { users, communities } from "@shared/schema";
-import { POWER_LEVELS } from "@shared/schema";
+import { POWER_LEVELS, type Community } from "@shared/schema";
 
 const scryptAsync = async (password: string, salt: string): Promise<string> => {
   const { scrypt } = await import("crypto");
@@ -127,7 +127,7 @@ export async function seedDatabase() {
     },
   ];
 
-  const createdCommunities = [];
+  const createdCommunities: Community[] = [];
   for (let i = 0; i < seedCommunities.length; i++) {
     const founderIdx = i % createdUsers.length;
     const founder = createdUsers[founderIdx]!;

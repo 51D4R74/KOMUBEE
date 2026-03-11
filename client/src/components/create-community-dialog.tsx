@@ -27,7 +27,7 @@ export function CreateCommunityDialog() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [color, setColor] = useState(COMMUNITY_COLORS[0]);
+  const [color, setColor] = useState<(typeof COMMUNITY_COLORS)[number]>(COMMUNITY_COLORS[0]);
   const [category, setCategory] = useState("general");
   const [entryType, setEntryType] = useState("open");
   const { toast } = useToast();
